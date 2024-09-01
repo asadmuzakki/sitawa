@@ -1,9 +1,3 @@
-<<<<<<< Updated upstream
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
-=======
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import ReactDOM from "react-dom/client";
@@ -11,15 +5,9 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App.tsx";
 import "./global.css";
 import { GlobalProvider } from "./GlobalContext.tsx";
->>>>>>> Stashed changes
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
-<<<<<<< Updated upstream
-    <App />
-  </StrictMode>,
-)
-=======
     <BrowserRouter>
       <GlobalProvider>
         <App />
@@ -27,4 +15,3 @@ createRoot(document.getElementById('root')!).render(
     </BrowserRouter>
   </StrictMode>
 );
->>>>>>> Stashed changes
