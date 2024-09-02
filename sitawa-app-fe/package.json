@@ -1,5 +1,5 @@
 {
-  "name": "sitawa-app-fe",
+  "name": "my-react-app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,10 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "axios": "^1.7.5",
+    "animate.css": "^4.1.1",
+    "chart.js": "^4.4.3",
     "react": "^18.3.1",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.26.1"
+    "react-router-dom": "^6.26.0",
+    "recharts": "^2.12.7"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
