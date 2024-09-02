@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-
 import upload from "../../assets/logo/Picture.png";
 import NavPengaduan from "../../components/UserComponents/NavPengaduan";
 
@@ -8,6 +7,11 @@ const pengaduan = () => {
   const [selectedImage, setSelectedImage] = useState("");
   const [imageName, setImageName] = useState("");
   const [imageSize, setImageSize] = useState(0);
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState(""); 
+  const [address, setAddress] = useState("");
+  const [subject, setSubject] = useState("");
+  const [description, setDescription] = useState("");
   const handleIconClick = () => {
     if (fileInputRef.current) {
       fileInputRef.current.click();
@@ -23,6 +27,45 @@ const pengaduan = () => {
       setImageSize(file.size);
     }
   };
+  const handlePengaduan = async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData();
+    formData.append('nama', name);
+    formData.append('nomor_hp', phone);
+    formData.append('alamat', address);
+    formData.append('subjek', subject);
+    formData.append('keterangan', description);
+
+    try {
+      const response = await fetch('http://localhost:8000/api/pengaduan', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer YOUR_ACCESS_TOKEN_HERE`, // Ganti dengan token autentikasi jika dibutuhkan
+        },
+        body: formData,
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Pengaduan berhasil dikirim:', data);
+        alert('Pengaduan berhasil dikirim!');
+        // Reset form
+        setName('');
+        setPhone('');
+        setAddress('');
+        setSubject('');
+        setDescription('');
+      } else {
+        const errorData = await response.json();
+        console.error('Error:', errorData);
+        alert('Gagal mengirim pengaduan');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Terjadi kesalahan saat mengirim pengaduan');
+    }
+  };
   return (
     <div className="">
     <NavPengaduan/>
@@ -31,7 +74,37 @@ const pengaduan = () => {
           <div className="py-[49px] border-b border-[#f0f0f0] mx-1">
             <p className="ml-5">Buat Pengaduan</p>
           </div>
-          <form className="w-full" action="">
+          <form className="w-full" action="" onSubmit={handlePengaduan}>
+            <div className="flex justify-center items-center text-[12px]">
+              <div className="mt-5">
+                <label className="ml-5 " htmlFor="">
+                  Nama
+                </label>
+                <div className="w-[950px] h-[42px] border border-[#f0f0f0] rounded-xl flex justify-center items-center mt-2">
+                  <input
+                    className="w-[920px] h-[35px] outline-none "
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="flex justify-center items-center text-[12px]">
+              <div className="mt-5">
+                <label className="ml-5 " htmlFor="">
+                  No HP
+                </label>
+                <div className="w-[950px] h-[42px] border border-[#f0f0f0] rounded-xl flex justify-center items-center mt-2">
+                  <input
+                    className="w-[920px] h-[35px] outline-none "
+                    type="tel"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                  />
+                </div>
+              </div>
+            </div>
             <div className="flex justify-center items-center text-[12px]">
               <div className="mt-5">
                 <label className="ml-5 " htmlFor="">
@@ -41,6 +114,8 @@ const pengaduan = () => {
                   <input
                     className="w-[920px] h-[35px] outline-none "
                     type="text"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
                   />
                 </div>
               </div>
@@ -102,6 +177,8 @@ const pengaduan = () => {
                   <input
                     className="w-[920px] h-[35px] outline-none "
                     type="text"
+                    value={subject}
+                    onChange={(e) => setSubject(e.target.value)}
                   />
                 </div>
               </div>
@@ -112,8 +189,8 @@ const pengaduan = () => {
                   Keterangan
                 </label>
                 <div className="w-[950px] h-[222px] border border-[#f0f0f0] rounded-xl flex justify-center items-center mt-2">
-                  <textarea className="w-[920px] h-[200px] outline-none  " name="" id="">
-
+                  <textarea className="w-[920px] h-[200px] outline-none  " name="" id="" value={description} onChange={(e) => setDescription(e.target.value)}>
+                    
                   </textarea>
                   
                 </div>

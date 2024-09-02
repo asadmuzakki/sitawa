@@ -29,7 +29,7 @@ const App = () => {
   return (
     <div className=" relative  w-full h-[100vh] ">
       <Routes>
-        <Route path="/" Component={beranda} />
+        <Route path="/" Component={home} />
         <Route path="/pengaduan" Component={pengaduan} />
         <Route path="/hasil-pengaduan" Component={hasilpengaduan} />
         <Route path="/edit-profile" Component={editprofile} />

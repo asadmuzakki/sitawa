@@ -28,8 +28,8 @@ class ComplaintController extends Controller
             'address' => 'required|string|max:255',
             'subject' => 'required|string|max:255',
             'description' => 'required|string',
-            'latitude' => 'required|numeric',
-            'longitude' => 'required|numeric',
+            'latitude' => 'nullable|numeric',
+            'longitude' => 'nullable|numeric',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
