@@ -1,5 +1,8 @@
 
 import { useNavigate } from 'react-router-dom'
+import { GlobalContext } from '../../GlobalContext'
+import { useContext } from 'react'
+
 
 
 type propsFromBeranda = {
@@ -7,6 +10,23 @@ type propsFromBeranda = {
   }
 const DashboardSidebar:React.FC<propsFromBeranda>  = ({bg}) => {
   const navigate = useNavigate()
+  const context = useContext(GlobalContext)
+  if(!context){
+    throw new Error("context not found")
+  }
+  const {state, setState} = context
+
+  const exitHandler = ()=>{
+    setState((prevState)=>{
+      return{
+        ...prevState,
+        actionLogOut:!prevState.actionLogOut
+      }
+    })
+    console.log(state.actionLogOut);
+    
+  }
+  
   return (
     <div>
         <div className="sidebar h-[100vh]  border-r-[3px] border-[#F7F7F7] ">
@@ -434,7 +454,7 @@ const DashboardSidebar:React.FC<propsFromBeranda>  = ({bg}) => {
           </div>
         </div>
         <div className="flex items-center justify-center  mt-[12rem]">
-          <button className="flex items-center justify-center gap-2">
+          <button onClick={exitHandler} className="flex items-center justify-center gap-2">
             <span>
               <svg
                 width="20"

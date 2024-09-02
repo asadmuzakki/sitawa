@@ -8,6 +8,12 @@ import TabelProduksi from "../../components/SuperAdminComponents/TabelProduksi";
 import StatistikPanen from "../../components/StatistikPanen";
 
 const statistikProduksi = () => {
+  const context = useContext(GlobalContext)
+  if(!context){
+    throw new Error("context not found")
+  }
+
+  const {state} = context
   return (
     <div>
       <Navbar />
@@ -46,7 +52,7 @@ const statistikProduksi = () => {
                         Statistik Panen Kabupaten Sumbawa
                       </p>
                       <div className="flex gap-2">
-                        <p>2024</p>
+                        <p>{state.yearChoiceed}</p>
                         <span>
                           <svg
                             width="18"

@@ -2,7 +2,7 @@ import logo from "../assets/logo/sumbawa.jpeg";
 import photoProfile from "../assets/photos/Screenshot 2024-08-06 033013.png";
 const Navbar = () => {
   return (
-    <div className="bg-[#FFFFFF] flex items-center w-full h-[83px] border border-[#F7F7F7] fixed  z-[9999999]">
+    <div className="bg-[#FFFFFF] flex items-center w-full h-[83px] border border-[#F7F7F7] fixed  z-10">
       <div className="flex justify-between w-full items-center">
         <div className="logo flex gap-2 items-center ml-[41px]">
           <img className="w-[39px] h-[57px]" src={logo} alt="" />

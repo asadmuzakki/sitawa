@@ -21,7 +21,12 @@ const pengaduanmasyarakat = () => {
   
   
   return (
-    <div>
+    <div className="relative">
+      <div
+        className={` w-full h-[100vh] absolute   ${
+          state.actionHapusPengaduan ? "bg-black opacity-50 z-20" : ""
+        }`}
+      ></div>
       <Navbar />
 
       <div className="relative ">

@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import admin from "./page/superadmin/beranda";
+
 import settings from "./page/superadmin/settings";
 import Navbar from "./components/Navbar";
 import pengaduanmasyarakat from "./page/superadmin/pengaduanmasyarakat.tsx";

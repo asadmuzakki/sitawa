@@ -109,7 +109,7 @@ const TabelProduksi = () => {
                         </button>
                         {clickedIndex == index && (
                           <div ref={ref} className="origin-top-right absolute right-full  w-[63px] h-[27px] rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                            <button onClick={()=>navigate(`/balas-pengaduan`)} className="text-white block h-full  bg-custom-gradient w-full rounded-md">
+                            <button onClick={()=>navigate(`/statistik-produksi`)} className="text-white block h-full  bg-custom-gradient w-full rounded-md">
                               Lihat
                             </button>
                           

@@ -20,7 +20,7 @@ const PopUp = () => {
   }
   return (
     <div >
-         <div className={`bg-white w-[363px] h-[312px] rounded-md border shadow-2xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ${state.actionHapusPengaduan ? "" : "hidden"}`}>
+         <div className={`bg-white w-[363px] h-[312px] rounded-md border shadow-2xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 ${state.actionHapusPengaduan ? "" : "hidden"}`}>
         <div className="flex justify-end p-2">
           <button onClick={xHandler} type="button">
             <span>
@@ -70,7 +70,7 @@ const PopUp = () => {
           </span>
         </div>
         <div className=" flex justify-center  mt-2">
-          <p className="max-w-[170px] text-center font-bold">
+          <p className="max-w-[170px] text-center font-bold text-black">
             Apakah anda yakin ingin menghapus pengaduan?
           </p>
         </div>

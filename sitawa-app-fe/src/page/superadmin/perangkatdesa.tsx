@@ -1,12 +1,24 @@
-import React from "react";
+import { useContext } from "react";
+import { GlobalContext } from "../../GlobalContext";
 import PerangkatSidebar from "../../components/sidebarComponents/PerangkatSidebar";
 import PerangkatDesa from "../../components/PerangkatDesa";
 import Navbar from "../../components/Navbar";
 import PopUpPerangkat from "../../components/SuperAdminComponents/PopUpPerangkat";
 
 const perangkatdesa = () => {
+  const context = useContext(GlobalContext);
+  if (!context) {
+    console.error("Global context not found");
+    return; // or throw an error, depending on your use case
+  }
+  const {state} = context
   return (
     <div>
+      <div
+        className={` w-full h-[100vh] absolute   ${
+          state.actionHapusPerangkat ? "bg-black opacity-50 z-20" : ""
+        }`}
+      ></div>
       <Navbar />
 
       <div className="relative ">
