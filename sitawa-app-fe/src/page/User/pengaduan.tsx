@@ -35,6 +35,32 @@ const pengaduan = () => {
             <div className="flex justify-center items-center text-[12px]">
               <div className="mt-5">
                 <label className="ml-5 " htmlFor="">
+                  Nama
+                </label>
+                <div className="w-[950px] h-[42px] border border-[#f0f0f0] rounded-xl flex justify-center items-center mt-2">
+                  <input
+                    className="w-[920px] h-[35px] outline-none "
+                    type="text"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="flex justify-center items-center text-[12px]">
+              <div className="mt-5">
+                <label className="ml-5 " htmlFor="">
+                  No HP
+                </label>
+                <div className="w-[950px] h-[42px] border border-[#f0f0f0] rounded-xl flex justify-center items-center mt-2">
+                  <input
+                    className="w-[920px] h-[35px] outline-none "
+                    type="tel"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="flex justify-center items-center text-[12px]">
+              <div className="mt-5">
+                <label className="ml-5 " htmlFor="">
                   Alamat
                 </label>
                 <div className="w-[950px] h-[42px] border border-[#f0f0f0] rounded-xl flex justify-center items-center mt-2">

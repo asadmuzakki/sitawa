@@ -22,7 +22,7 @@ const beranda = () => {
       ></div>
       <Navbar />
       <div className="relative">
-        <div>
+        <div className="">
           <ExitPopup />
         </div>
         <div className="flex overflow-y-hidden">

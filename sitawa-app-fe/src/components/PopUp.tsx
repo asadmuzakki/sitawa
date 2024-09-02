@@ -20,7 +20,7 @@ const PopUp = () => {
   }
   return (
     <div >
-         <div className={`bg-white w-[363px] h-[312px] rounded-md border shadow-2xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 ${state.actionHapusPengaduan ? "" : "hidden"}`}>
+         <div className={`bg-white w-[363px] h-[312px] rounded-md border shadow-2xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 animate__animated animate__fadeIn ${state.actionHapusPengaduan ? "" : "hidden"}`}>
         <div className="flex justify-end p-2">
           <button onClick={xHandler} type="button">
             <span>
