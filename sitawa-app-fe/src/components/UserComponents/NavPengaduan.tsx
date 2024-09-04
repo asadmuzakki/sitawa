@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo/sumbawa.jpeg";
-import photoProfile from "../../assets/photos/Screenshot 2024-08-06 033013.png";
+import photoProfile from "../../assets/photos/account-avatar-profile-user-svgrepo-com.png";
 const NavPengaduan = () => {
   const [color] = useState(1);
   const [showEdit, setShowEdit] = useState(false);
@@ -36,7 +36,7 @@ const NavPengaduan = () => {
   };
   return (
     <div className="w-full relative">
-      <div className="bg-[#FFFFFF] flex items-center w-full h-[123px] border border-[#F7F7F7] fixed  z-[9999999]">
+      <div className="bg-[#FFFFFF] flex items-center w-full h-[123px] border border-[#F7F7F7] fixed  z-10">
         <div className="flex justify-between w-full items-center">
           <div className="logo flex gap-2 items-center ml-[41px]">
             <img className="w-[39px] h-[57px]" src={logo} alt="" />
@@ -90,7 +90,7 @@ const NavPengaduan = () => {
                 src={photoProfile}
                 alt=""
               />
-              <p className="text-[12px]">Amylya Nurul</p>
+              <p className="text-[12px]">Anonymous</p>
             </div>
           </div>
         </div>
