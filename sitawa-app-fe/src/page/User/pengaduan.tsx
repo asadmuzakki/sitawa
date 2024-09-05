@@ -26,10 +26,12 @@ const pengaduan = () => {
   const [subject, setSubject] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [phone_number, setPhone_number] = useState<string>("");
-  
+
   const [latitude, setLatitude] = useState<number>(0);
   const [longitude, setLongitude] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
+
+  const [toggleInput, setToggleInput] = useState<boolean>(false);
 
   const getLocation = () => {
     if (navigator.geolocation) {
@@ -86,7 +88,7 @@ const pengaduan = () => {
       setFile(file);
       const imageUrl = URL.createObjectURL(file);
       setSelectedImage(imageUrl);
-      
+
       setImageName(file.name);
       setImageSize(file.size);
     }
@@ -116,13 +118,12 @@ const pengaduan = () => {
 
     try {
       const { data, error } = await supabase.storage
-        .from("images").upload(`public/${file.name}`, file);
+        .from("images")
+        .upload(`public/${file.name}`, file);
 
       if (error) {
         console.log("Error uploading image:", error);
         throw error;
-        ;
-
       }
 
       // Mendapatkan URL publik untuk gambar yang baru diupload
@@ -154,8 +155,10 @@ const pengaduan = () => {
       !subject ||
       !description
     ) {
+      setToggleInput(!toggleInput);
+
       alert("Lengkapi semua data");
-      return;
+      return ;
     }
     const currentTimestamp = new Date();
     try {
@@ -166,7 +169,7 @@ const pengaduan = () => {
           name,
           phone_number,
           address,
-          photo:imageUrl,
+          photo: imageUrl,
           subject,
           description,
           updated_at: currentTimestamp,
@@ -177,7 +180,6 @@ const pengaduan = () => {
       ]);
 
       console.log("Setelah mengirim data ke Supabase");
-      
 
       if (error) {
         console.log("Error dari Supabase:", error);
@@ -189,7 +191,7 @@ const pengaduan = () => {
       // Reset fields
       setNmae("");
       setPhone_number("");
-      setAddress("")
+      setAddress("");
       setSubject("");
       setDescription("");
       setSelectedImage("");
@@ -224,9 +226,14 @@ const pengaduan = () => {
             <form onSubmit={addPengaduan} className="w-full" action="">
               <div className="flex justify-center items-center text-[12px]">
                 <div className="mt-5">
-                  <label className="ml-5 " htmlFor="">
-                    Nama
-                  </label>
+                  <div className="flex w-full  relative">
+                    <label className="ml-5 " htmlFor="">
+                      Nama
+                    </label>
+                    <p className={`absolute right-0 mr-5 text-red-600 ${toggleInput&&name===""?"block":"hidden"}`}>
+                      *Field tidak boleh kosong
+                    </p>
+                  </div>
                   <div className="w-[950px] h-[42px] border border-[#f0f0f0] rounded-xl flex justify-center items-center mt-2">
                     <input
                       onChange={(e) => setNmae(e.target.value)}
@@ -239,9 +246,14 @@ const pengaduan = () => {
               </div>
               <div className="flex justify-center items-center text-[12px]">
                 <div className="mt-5">
-                  <label className="ml-5 " htmlFor="">
-                    No HP
-                  </label>
+                <div className="flex w-full  relative">
+                    <label className="ml-5 " htmlFor="">
+                      No HP
+                    </label>
+                    <p className={`absolute right-0 mr-5 text-red-600 ${toggleInput&&phone_number===""?"block":"hidden"}`}>
+                      *Field tidak boleh kosong
+                    </p>
+                  </div>
                   <div className="w-[950px] h-[42px] border border-[#f0f0f0] rounded-xl flex justify-center items-center mt-2">
                     <input
                       onChange={(e) => setPhone_number(e.target.value)}
@@ -254,9 +266,15 @@ const pengaduan = () => {
               </div>
               <div className="flex justify-center items-center text-[12px]">
                 <div className="mt-5">
-                  <label className="ml-5 " htmlFor="">
-                    Alamat
-                  </label>
+                <div className="flex w-full  relative">
+                    <label className="ml-5 " htmlFor="">
+                      Alamat
+                    </label>
+                    <p className={`absolute right-0 mr-5 text-red-600 ${toggleInput&&address===""?"block":"hidden"}`}>
+                      *Field tidak boleh kosong
+                    </p>
+                  </div>
+                  
                   <div className="w-[950px] h-[42px] border border-[#f0f0f0] rounded-xl flex justify-center items-center mt-2">
                     <input
                       onChange={(e) => setAddress(e.target.value)}
@@ -337,7 +355,11 @@ const pengaduan = () => {
                   )}
 
                   <div className="px-3">
-                    <button className="border px-2 py-1 rounded-lg text-[12px]" onClick={handleUpload} disabled={uploading}>
+                    <button
+                      className="border px-2 py-1 rounded-lg text-[12px]"
+                      onClick={handleUpload}
+                      disabled={uploading}
+                    >
                       {uploading ? "Uploading..." : "Upload"}
                     </button>
                   </div>
@@ -345,9 +367,14 @@ const pengaduan = () => {
               </div>
               <div className="flex justify-center items-center text-[12px]">
                 <div className="mt-5">
-                  <label className="ml-5 " htmlFor="">
-                    Subjek
-                  </label>
+                <div className="flex w-full  relative">
+                    <label className="ml-5 " htmlFor="">
+                      Subjek
+                    </label>
+                    <p className={`absolute right-0 mr-5 text-red-600 ${toggleInput&&subject===""?"block":"hidden"}`}>
+                      *Field tidak boleh kosong
+                    </p>
+                  </div>
                   <div className="w-[950px] h-[42px] border border-[#f0f0f0] rounded-xl flex justify-center items-center mt-2">
                     <input
                       onChange={(e) => setSubject(e.target.value)}
@@ -360,9 +387,14 @@ const pengaduan = () => {
               </div>
               <div className="flex justify-center items-center text-[12px]">
                 <div className="mt-5">
-                  <label className="ml-5 " htmlFor="">
-                    Keterangan
-                  </label>
+                <div className="flex w-full  relative">
+                    <label className="ml-5 " htmlFor="">
+                      Keterangan
+                    </label>
+                    <p className={`absolute right-0 mr-5 text-red-600 ${toggleInput&&description===""?"block":"hidden"}`}>
+                      *Field tidak boleh kosong
+                    </p>
+                  </div>
                   <div className="w-[950px] h-[222px] border border-[#f0f0f0] rounded-xl flex justify-center items-center mt-2">
                     <textarea
                       value={description}

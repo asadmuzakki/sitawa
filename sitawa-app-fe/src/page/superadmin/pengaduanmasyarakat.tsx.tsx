@@ -6,7 +6,9 @@ import PengaduanSidebar from "../../components/sidebarComponents/PengaduanSideba
 import Navbar from "../../components/Navbar";
 import TabelPengaduan from "../../components/TabelPengaduan";
 
+
 const pengaduanmasyarakat = () => {
+  
   const context = useContext(GlobalContext);
   if (!context) {
     console.error("Global context not found");
@@ -17,7 +19,7 @@ const pengaduanmasyarakat = () => {
     console.log(state.actionHapusPengaduan);
     
   })
-
+  
   
   
   return (
