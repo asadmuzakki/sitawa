@@ -7,6 +7,8 @@ interface State {
   yearChoiceed?:string
   actionLogOut : boolean
   actionAddData:boolean
+  getId?:number
+  path:string
 }
 
 
@@ -30,7 +32,9 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
     actionHapusPerangkat:false,
     yearChoiceed:"2024",
     actionLogOut:false,
-    actionAddData:false
+    actionAddData:false,
+    getId: undefined,
+    path:""
   });
 
   return (

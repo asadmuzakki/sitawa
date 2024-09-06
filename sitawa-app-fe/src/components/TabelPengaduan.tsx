@@ -6,8 +6,10 @@ import { supabase } from "../api/supabaseClient";
 import { format } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
 type pengaduan = {
+  id: number;
   name: string;
   subject: string;
+  photo:string
   address: string;
   phone_number: string;
   created_at: any;
@@ -66,15 +68,19 @@ const TabelPengaduan = () => {
     };
   }, []);
 
-  const { setState } = context;
-  const deleteHandler = () => {
+  const {state,setState } = context;
+  const deleteHandler = (id:number,path:string) => {
     setState((prevState) => {
       return {
         ...prevState,
         actionHapusPengaduan: !prevState.actionHapusPengaduan,
+        getId: id,
+        path:path
       };
     });
   };
+
+  
 
   return (
     <div>
@@ -174,13 +180,13 @@ const TabelPengaduan = () => {
                                 className="origin-top-right absolute right-full  w-[63px] h-[55px] rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                               >
                                 <button
-                                  onClick={() => navigate(`/balas-pengaduan`)}
+                                 
                                   className="text-white block h-1/2 bg-custom-gradient w-full rounded-t-md"
                                 >
-                                  Balas
+                                  Lihat
                                 </button>
                                 <button
-                                  onClick={deleteHandler}
+                                  onClick={()=>deleteHandler(item.id,item.photo)}
                                   className="block h-1/2 w-full"
                                 >
                                   Hapus
