@@ -1,17 +1,18 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { dataPengaduan } from "../data/data";
+
 import { GlobalContext } from "../GlobalContext";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../api/supabaseClient";
 import { format } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
-type pengaduan = {
+
+export type pengaduan = {
   id: number;
   name: string;
   subject: string;
-  photo:string
+  image:string
   address: string;
-  phone_number: string;
+  phone: string;
   created_at: any;
 };
 const TabelPengaduan = () => {
@@ -24,8 +25,8 @@ const TabelPengaduan = () => {
 
   const formatDate = (dateStrings: string[]): string[] => {
     return dateStrings.map((dateString) => {
-      const zonedDate = toZonedTime(dateString, "Asia/Makassar");
-      return format(zonedDate, "dd-MM-yyyy hh:mm a");
+      const zonedDate = toZonedTime(dateString, "Asia/Makassar"); // Mengubah waktu UTC ke waktu setempat di Asia/Makassar
+      return format(zonedDate, "HH : mm : ss"); // Format tanggal dengan nama bulan
     });
   };
   const fetchPengaduan = async () => {
@@ -34,7 +35,7 @@ const TabelPengaduan = () => {
       const { data, error } = await supabase.from("complaints").select("*");
   
       if (error) {
-        throw error; // Throw the error to be caught in the catch block
+        throw error; 
       }
   
       if (data) {
@@ -68,7 +69,11 @@ const TabelPengaduan = () => {
     };
   }, []);
 
-  const {state,setState } = context;
+  const handleDetail = (id: number) => {
+    navigate(`/pengaduan-masyarakat/balas-pengaduan/${id}`);
+  }
+
+  const {setState } = context;
   const deleteHandler = (id:number,path:string) => {
     setState((prevState) => {
       return {
@@ -98,7 +103,7 @@ const TabelPengaduan = () => {
               <table className="min-w-full">
                 <thead className="">
                   <tr>
-                    <th className="px-6 py-3  text-xs font-bold text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3  text-xs font-bold text-gray-500 uppercase tracking-wider ">
                       Nama
                     </th>
                     <th className="px-6 py-3  text-xs font-bold text-gray-500 uppercase tracking-wider">
@@ -128,18 +133,18 @@ const TabelPengaduan = () => {
                   return (
                     <tbody className="border-y border-[#F0F0F0]">
                       <tr className="" key={index}>
-                        <td className="text-center text-ellipsis max-w-20 px-4 py-2 whitespace-nowrap text-xs  text-gray-500 ">
+                        <td className="text-center text-ellipsis max-w-20 px-4 py-2 whitespace-nowrap overflow-hidden text-xs  text-gray-500 ">
                           {item.name}
                         </td>
 
-                        <td className="text-center text-ellipsis max-w-32 px-4 py-2 whitespace-nowrap text-xs text-gray-500 ">
+                        <td className="text-center text-ellipsis max-w-32 px-4 py-2 whitespace-nowrap overflow-hidden text-xs text-gray-500 ">
                           {item.subject}
                         </td>
                         <td className="text-center text-ellipsis max-w-[200px] overflow-hidden px-4 py-2 whitespace-nowrap text-xs text-gray-500">
                           {item.address}
                         </td>
                         <td className="text-center px-4 py-2 whitespace-nowrap text-xs text-gray-500">
-                          {item.phone_number}
+                          {item.phone}
                         </td>
                         <td className="text-center px-4 py-2 whitespace-nowrap text-xs text-gray-500">
                           {formattedDateTime[index]}
@@ -180,13 +185,13 @@ const TabelPengaduan = () => {
                                 className="origin-top-right absolute right-full  w-[63px] h-[55px] rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                               >
                                 <button
-                                 
+                                 onClick={()=>handleDetail(item.id)}
                                   className="text-white block h-1/2 bg-custom-gradient w-full rounded-t-md"
                                 >
-                                  Lihat
+                                  Balas
                                 </button>
                                 <button
-                                  onClick={()=>deleteHandler(item.id,item.photo)}
+                                  onClick={()=>deleteHandler(item.id,item.image)}
                                   className="block h-1/2 w-full"
                                 >
                                   Hapus

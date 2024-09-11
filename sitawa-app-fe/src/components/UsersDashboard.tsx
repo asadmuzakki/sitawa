@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 
-import users from "../assets/photos/ansel.png";
+import users from "../assets/photos/account-avatar-profile-user-svgrepo-com.png";
 
 const UsersDashboard = () => {
   const [clickedIndex, setClickedIndex] = useState<number | null>(null);
@@ -36,7 +36,7 @@ const UsersDashboard = () => {
                     src={users}
                     alt=""
                   />
-                  <p className="text-[12px]">Anselma Putri</p>
+                  <p className="text-[12px]">Anonymous</p>
                 </div>
                 <button type="button" onClick={() => setClickedIndex(index)}>
                   <span className="flex items-center mr-2">

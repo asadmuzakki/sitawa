@@ -9,6 +9,8 @@ interface State {
   actionAddData:boolean
   getId?:number
   path:string
+  loadingProduksi:boolean
+
 }
 
 
@@ -34,7 +36,9 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
     actionLogOut:false,
     actionAddData:false,
     getId: undefined,
-    path:""
+    path:"",
+    loadingProduksi:false, 
+  
   });
 
   return (

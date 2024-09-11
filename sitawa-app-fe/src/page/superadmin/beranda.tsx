@@ -41,7 +41,7 @@ const beranda = () => {
                     Accounts
                   </p>
                   <p className="border-l-[1px] border-[#858585] pl-2">
-                    Muhammad Muayyadin
+                    Superadmin
                   </p>
                 </div>
               </div>

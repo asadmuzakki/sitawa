@@ -2,7 +2,7 @@ import FooterLogin from "../../components/loginregistcomp/FooterLogin";
 
 import logo from "../../assets/logo/Mask group (1).png";
 import jagung from "../../assets/photos/Mask group.png";
-import { dataHasilPengaduan } from "../../data/data";
+
 import { useEffect, useRef, useState } from "react";
 
 import NavHasilPengaduan from "../../components/UserComponents/NavHasilPengaduan";
@@ -33,112 +33,111 @@ const hasilpengaduan = () => {
     <div>
       <NavHasilPengaduan />
 
-      <div className="w-full h-[100vh] ">
-        <div className="flex  justify-center   ">
-          <div className={`${showDetail ? "hidden" : ""}`}>
-            <div className="border rounded-xl border-[#F0F0F0] w-[1230px]  shadow-xl  my-32">
-              <p className=" my-10 pl-10 ">Hasil Pengaduan</p>
-              <div className="scrollbar-hide overflow-auto h-[500px]">
-                <div className="bg-white  rounded-lg overflow-hidden py-3 ">
-                  <table className="min-w-full ">
-                    <thead className="">
-                      <tr>
-                        <th className="px-6 py-3  text-xs font-bold text-gray-500 uppercase tracking-wider">
-                          Subjek
-                        </th>
-                        <th className="px-6 py-3  text-xs font-bold text-gray-500 uppercase tracking-wider">
-                          Alamat
-                        </th>
-                        <th className="px-6 py-3  text-xs font-bold text-gray-500 uppercase tracking-wider">
-                          No. HP
-                        </th>
-                        <th className="px-6 py-3  text-xs font-bold text-gray-500 uppercase tracking-wider">
-                          Waktu
-                        </th>
-                        <th className="px-6 py-3  text-xs font-bold text-gray-500 uppercase tracking-wider">
-                          Action
-                        </th>
-                      </tr>
-                    </thead>
-                    {dataHasilPengaduan.map((item, index) => {
-                      return (
-                        <tbody className="border-y border-[#F0F0F0]">
-                          <tr className="" key={index}>
-                            <td className="text-center px-4 py-2 whitespace-nowrap text-xs text-gray-500 ">
-                              {item.subjek}
-                            </td>
-                            <td className="text-center px-4 py-2 whitespace-nowrap text-xs text-gray-500">
-                              {item.alamat}
-                            </td>
-                            <td className="text-center px-4 py-2 whitespace-nowrap text-xs text-gray-500">
-                              {item.noHp}
-                            </td>
-                            <td className="text-center px-4 py-2 whitespace-nowrap text-xs text-gray-500">
-                              {item.waktu}
-                            </td>
-                            <td className="text-center px-4 py-2 whitespace-nowrap text-xs font-medium">
-                              <div className="relative inline-block text-left">
-                                <button
-                                  onClick={() => setClickedIndex(index)}
-                                  type="button"
-                                >
-                                  <span>
-                                    <svg
-                                      width="20px"
-                                      height="20px"
-                                      viewBox="0 0 24 24"
-                                      fill="none"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                      <path
-                                        d="M7 12C7 13.1046 6.10457 14 5 14C3.89543 14 3 13.1046 3 12C3 10.8954 3.89543 10 5 10C6.10457 10 7 10.8954 7 12Z"
-                                        fill="#1C274C"
-                                      />
-                                      <path
-                                        d="M21 12C21 13.1046 20.1046 14 19 14C17.8954 14 17 13.1046 17 12C17 10.8954 17.8954 10 19 10C20.1046 10 21 10.8954 21 12Z"
-                                        fill="#1C274C"
-                                      />
-                                      <path
-                                        opacity="0.5"
-                                        d="M14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12Z"
-                                        fill="#1C274C"
-                                      />
-                                    </svg>
-                                  </span>
-                                </button>
-                                {clickedIndex == index && (
-                                  <div
-                                    ref={ref}
-                                    className="origin-top-right absolute right-full  w-[63px] h-[55px] rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
-                                  >
-                                    <button
-                                      onClick={handleDetailClick}
-                                      className="block h-1/2 bg-custom-gradient w-full rounded-t-md text-white"
-                                    >
-                                      Detail
-                                    </button>
-                                    <button className="block h-1/2 w-full">
-                                      Hapus
-                                    </button>
-                                  </div>
-                                )}
-                              </div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      );
-                    })}
-                  </table>
+      <div className=" w-full h-[100vh]  ">
+        <div className="flex justify-center   ">
+          <div className="mt-32 w-full flex justify-center h-full">
+            <div className="w-full  h-full ">
+              <div className="flex justify-between items-center p-6 ">
+                <h3 className="text-pengaduan font-bold text-[16px]">Hasil Pengaduan</h3>
+                <div className="flex gap-4">
+                  <div className="search w-[216px] h-[40px] border border-[#06D001] rounded-full flex justify-between items-center">
+                    <span className="flex items-center ml-5">
+                      <svg
+                        width="16"
+                        height="15"
+                        viewBox="0 0 16 15"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M6.80357 12.1429C10.0088 12.1429 12.6071 9.64844 12.6071 6.57143C12.6071 3.49441 10.0088 1 6.80357 1C3.59835 1 1 3.49441 1 6.57143C1 9.64844 3.59835 12.1429 6.80357 12.1429Z"
+                          stroke="#858585"
+                        />
+                        <path
+                          d="M11.3174 10.9048L14.5415 14"
+                          stroke="#858585"
+                          stroke-linecap="square"
+                        />
+                      </svg>
+                    </span>
+                    <input
+                      className="input-search w-[70%] mr-5  outline-none"
+                      type="text"
+                      placeholder="Search"
+                    />
+                  </div>
                 </div>
               </div>
-              <div className="my-10">
-                <div className="py-4 ml-14 text-xs font-bold">
-                  {dataHasilPengaduan.length} Pengaduan
-                </div>
-                <div className="p-4 text-center">
-                  <button className="bg-custom-gradient text-white px-6 py-2 rounded-full text-xs">
-                    Lainnya
-                  </button>
+              {/* --------- card pengaduan ----------------------- */}
+
+              <div className=" w-full flex justify-center">
+                <div className="scrollbar-hide w-full h-full py-3 flex flex-wrap justify-center gap-4 ">
+                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12,13,14].map(() => {
+                    return (
+                      <div className="card-pengaduan border rounded-lg w-[616px] cursor-pointer hover:shadow-2xl">
+                        <div className="p-3 flex gap-3">
+                          <div className="img-cover rounded-xl flex justify-center  w-[230px] h-[230px]">
+                            <img
+                              className="w-[230px] h-[230px] rounded-xl shadow-none "
+                              src={jagung}
+                              alt=""
+                            />
+                          </div>
+                          <div className="w-[426px]">
+                            <div className="flex justify-between items-center">
+                              <p className="name font-bold">Muhammad Muayyadin</p>
+                              <div className=" flex gap-2 text-[10px]">
+                                <p className="date">17 Agustus 2024</p>
+                                <p className="status text-[#06D001]">Selesai</p>
+                              </div>
+                            </div>
+                            <div className="flex gap-1">
+                              <span className="">
+                                <svg
+                                className="svg"
+                                  width="15"
+                                  height="15"
+                                  viewBox="0 0 20 20"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M15.625 8.125C15.625 6.63316 15.0324 5.20242 13.9775 4.14752C12.9226 3.09263 11.4918 2.5 10 2.5C8.50816 2.5 7.07742 3.09263 6.02252 4.14752C4.96763 5.20242 4.375 6.63316 4.375 8.125C4.375 10.4325 6.22125 13.44 10 17.0425C13.7788 13.44 15.625 10.4325 15.625 8.125ZM10 18.75C5.41625 14.5837 3.125 11.0413 3.125 8.125C3.125 6.30164 3.84933 4.55295 5.13864 3.26364C6.42795 1.97433 8.17664 1.25 10 1.25C11.8234 1.25 13.572 1.97433 14.8614 3.26364C16.1507 4.55295 16.875 6.30164 16.875 8.125C16.875 11.0413 14.5837 14.5837 10 18.75Z"
+                                    fill="#858585"
+                                  />
+                                  <path
+                                    d="M10 10C10.4973 10 10.9742 9.80246 11.3258 9.45083C11.6775 9.09919 11.875 8.62228 11.875 8.125C11.875 7.62772 11.6775 7.15081 11.3258 6.79917C10.9742 6.44754 10.4973 6.25 10 6.25C9.50272 6.25 9.02581 6.44754 8.67417 6.79917C8.32254 7.15081 8.125 7.62772 8.125 8.125C8.125 8.62228 8.32254 9.09919 8.67417 9.45083C9.02581 9.80246 9.50272 10 10 10ZM10 11.25C9.1712 11.25 8.37634 10.9208 7.79029 10.3347C7.20424 9.74866 6.875 8.9538 6.875 8.125C6.875 7.2962 7.20424 6.50134 7.79029 5.91529C8.37634 5.32924 9.1712 5 10 5C10.8288 5 11.6237 5.32924 12.2097 5.91529C12.7958 6.50134 13.125 7.2962 13.125 8.125C13.125 8.9538 12.7958 9.74866 12.2097 10.3347C11.6237 10.9208 10.8288 11.25 10 11.25Z"
+                                    fill="#858585"
+                                  />
+                                </svg>
+                              </span>
+
+                              <p className="location text-[10px] w-[250px]">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. A, quibusdam!
+                              </p>
+                            </div>
+                            <p className="subjek text-[12px] mt-5">blablabla</p>
+                            <div className="h-[130px] overflow-hidden">
+                              <p className="deskripsi text-[12px] mt-5 ">
+                                Lorem, ipsum dolor sit amet consectetur
+                                adipisicing elit. Unde quibusdam tempora quidem
+                                iure, voluptates temporibus. Ipsa quidem
+                                delectus, quibusdam excepturi velit accusantium
+                                et reiciendis alias. Aut asperiores ad
+                                architecto harum. Quaerat asperiores illo quas
+                                soluta facere minima, atque excepturi voluptate
+                                rem tempore ratione in esse sint non? Earum,
+                                expedita at.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
