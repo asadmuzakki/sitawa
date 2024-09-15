@@ -1,15 +1,16 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../GlobalContext";
 import { supabase } from "../api/supabaseClient";
 import { useNavigate } from "react-router-dom";
 
 const PopUp = () => {
-  const [toggleChance, setToggleChance] = useState<boolean>(false);
+  // --------- state ----------
 
   const navigate = useNavigate();
+  
   const handleNavigation = (path: string) => {
     navigate(path);
-    window.location.reload();
+    // window.location.reload();
   };
   const context = useContext(GlobalContext);
   if (!context) {
@@ -18,7 +19,9 @@ const PopUp = () => {
 
   const { state, setState } = context;
   const [isClose, setClose] = useState(false);
+  // --------- state ----------
 
+  // --------- button hndler --------
   const xHandler = () => {
     setClose(!isClose);
     setState((prevState) => {
@@ -28,10 +31,30 @@ const PopUp = () => {
       };
     });
   };
+  // --------- button hndler --------
+
+  // ---------- fetch data -----------
+  const deleteResponPengaduan = async (id: number) => {
+    try {
+      const { error } = await supabase
+        .from("respon_superadmin")
+        .delete()
+        .eq("id_user", id);
+      if (error) {
+        throw error;
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
   const deleteDataById = async (id: number, path: string) => {
-    const parts = path.split("/storage/v1/object/public/images/");
-    const relativePath = parts[1];
-    deleteImageFromBucket("images", relativePath);
+    // const parts = path.split("/storage/v1/object/public/images/");
+    const image_name = 'public/' + path;
+    console.log(image_name);
+
+    // console.log(relativePath);
+    deleteImageFromBucket("images", image_name);
+    deleteResponPengaduan(id);
     try {
       const { error } = await supabase.from("complaints").delete().eq("id", id);
       if (error) {
@@ -55,6 +78,8 @@ const PopUp = () => {
     bucketName: string,
     filePath: string
   ) => {
+    console.log(filePath);
+
     try {
       const { error } = await supabase.storage
         .from(bucketName)
@@ -69,6 +94,10 @@ const PopUp = () => {
       console.error("Terjadi kesalahan:", err);
     }
   };
+  
+  // ---------- fetch data -----------
+
+  
 
   return (
     <div>

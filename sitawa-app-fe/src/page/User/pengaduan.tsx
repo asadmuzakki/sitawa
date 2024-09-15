@@ -10,6 +10,7 @@ import FooterLogin from "../../components/loginregistcomp/FooterLogin";
 
 import AddPopUp from "../../components/UserComponents/AddPopUp";
 import { formatInTimeZone } from "date-fns-tz";
+import LottieAnimation from "../../components/UserComponents/LottieAnimation";
 
 const pengaduan = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -33,6 +34,10 @@ const pengaduan = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const [toggleInput, setToggleInput] = useState<boolean>(false);
+
+  // ---------- random name for image -------
+
+  // ---------- random name for image -------
 
   const getLocation = () => {
     if (navigator.geolocation) {
@@ -186,17 +191,17 @@ const pengaduan = () => {
           created_at: formattedTime,
           latitude,
           longitude,
+          image_name : imageName
         },
       ]);
 
       console.log("Setelah mengirim data ke Supabase");
+      popUpHandler();
 
       if (error) {
         console.log("Error dari Supabase:", error);
         return;
       }
-
-      console.log("Data berhasil ditambahkan:", data);
 
       // Reset fields
       setNmae("");
@@ -205,7 +210,6 @@ const pengaduan = () => {
       setSubject("");
       setDescription("");
       setSelectedImage("");
-      popUpHandler();
     } catch (error) {
       console.error("Error saat menambahkan pengaduan:", error);
       alert("Terjadi kesalahan saat menambahkan pengaduan. Silakan coba lagi.");
@@ -229,7 +233,6 @@ const pengaduan = () => {
           <AddPopUp />
         </div>
         <div className="flex justify-center overflow-auto scrollbar-hide relative">
-          
           <div className="tabel-pengaduan w-[76.875rem]   border border-[#f0f0f0] rounded-xl shadow-xl my-32">
             <div className="py-[49px] border-b border-[#f0f0f0] mx-1">
               <p className="buat-pengaduan ml-5">Buat Pengaduan</p>
@@ -242,7 +245,7 @@ const pengaduan = () => {
                       Nama
                     </label>
                     <p
-                      className={`absolute right-0 mr-5 text-red-600 ${
+                      className={`p absolute right-0 mr-5 text-red-600 ${
                         toggleInput && name === "" ? "block" : "hidden"
                       }`}
                     >
@@ -266,7 +269,7 @@ const pengaduan = () => {
                       No HP
                     </label>
                     <p
-                      className={`absolute right-0 mr-5 text-red-600 ${
+                      className={`p absolute right-0 mr-5 text-red-600 ${
                         toggleInput && phone_number === "" ? "block" : "hidden"
                       }`}
                     >
@@ -277,8 +280,8 @@ const pengaduan = () => {
                     <input
                       onChange={(e) => setPhone_number(e.target.value)}
                       value={phone_number}
-                      className="w-[920px] h-[35px] outline-none "
-                      type="tel"
+                      className="w-[920px] h-[35px] outline-none appearance-none custom-input"
+                      type="number"
                     />
                   </div>
                 </div>
@@ -290,7 +293,7 @@ const pengaduan = () => {
                       Alamat
                     </label>
                     <p
-                      className={`absolute right-0 mr-5 text-red-600 ${
+                      className={`p absolute right-0 mr-5 text-red-600 ${
                         toggleInput && address === "" ? "block" : "hidden"
                       }`}
                     >
@@ -322,7 +325,7 @@ const pengaduan = () => {
                       }`}
                     >
                       <div className="loader"></div>
-                      <p>Sedang Mencari Lokasi</p>
+                      <p className="p">Sedang Mencari Lokasi</p>
                     </div>
                   </div>
                 </div>
@@ -357,14 +360,18 @@ const pengaduan = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex justify-center mt-5 ">
-                <div className="input-pengaduan border border-[#f0f0f0] rounded-xl w-[950px] h-[116px]">
+              <div
+                className={`flex justify-center mt-5 ${
+                  imageName === "" ? "hidden" : ""
+                } `}
+              >
+                <div className="input-pengaduan border border-[#f0f0f0] rounded-xl w-[950px] h-[116px] relative ">
                   {selectedImage && (
-                    <div className="p-3 flex  gap-2 items-center">
+                    <div className="img-upload p-3 flex  gap-2 items-center">
                       <img
                         src={selectedImage}
                         alt="Selected"
-                        className="h-[48px] w-[54px] object-cover rounded-sm"
+                        className="h-[54px] w-[54px] object-cover rounded-md"
                       />
                       <div>
                         <p className="p text-[12px] mb-1 text-black">
@@ -377,14 +384,24 @@ const pengaduan = () => {
                     </div>
                   )}
 
-                  <div className="px-3">
-                    <button
-                      className="border px-2 py-1 rounded-lg text-[12px]"
-                      onClick={handleUpload}
-                      disabled={uploading}
+                  <div className=" ">
+                    <div className={`mx-3 ${uploading ? "hidden" : ""}`}>
+                      <button
+                        className="p border px-2 py-1 rounded-lg text-[12px]"
+                        onClick={handleUpload}
+                        disabled={uploading}
+                      >
+                        Upload
+                      </button>
+                    </div>
+                    <div
+                      className={`mx-3 flex items-center gap-2 ${
+                        uploading ? "" : "hidden"
+                      }`}
                     >
-                      {uploading ? "Uploading..." : "Upload"}
-                    </button>
+                      <div className="loader"></div>
+                      <p className="p text-[12px]">Uploading</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -395,7 +412,7 @@ const pengaduan = () => {
                       Subjek
                     </label>
                     <p
-                      className={`absolute right-0 mr-5 text-red-600 ${
+                      className={`p absolute right-0 mr-5 text-red-600 ${
                         toggleInput && subject === "" ? "block" : "hidden"
                       }`}
                     >
@@ -419,7 +436,7 @@ const pengaduan = () => {
                       Keterangan
                     </label>
                     <p
-                      className={`absolute right-0 mr-5 text-red-600 ${
+                      className={`p absolute right-0 mr-5 text-red-600 ${
                         toggleInput && description === "" ? "block" : "hidden"
                       }`}
                     >

@@ -129,7 +129,21 @@
     .input-pengaduan textarea{
       width: 570px;
     }
+    /* image carousel */
+    .img-carousel-mid{
+      width: 467px;
+      height: 350px;
+    }
+    .img-carousel{
+      width: 467px;
+      height: 300px;
+    }
+    .deskripsi-sitawa{
+      flex-wrap: wrap;
+    }
   }
+
+ 
 
   @media(min-width: 850px){
     .hamburger{
@@ -222,9 +236,45 @@
     .input-pengaduan textarea{
       width: 370px;
     }
+
+     /* image carousel */
+     .img-carousel-mid{
+      width: 367px;
+      height: 250px;
+    }
+    .img-carousel{
+      width: 367px;
+      height: 220px;
+    }
+    .text-pengaduan{
+      font-size: 16px;
+    }
+    .btn-pengaduan{
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    .deskripsi-sitawa p{
+      font-size: 14px;
+    }
+    .deskripsi-sitawa p span{
+      font-size: 18px;
+    }
+    /* addPopup */
+    .addPopup p{
+      font-size: 14px;
+    }
+    .addPopup{
+      width: 263px;
+      height: 263px;
+    }
+    .addPopup img{
+      width: 100px;
+      height: 100px;
+    }
   }
   
   @media(max-width: 623px){
+   
     
     .card-pengaduan{
         width: 200px;
@@ -261,7 +311,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-        font-size: 10px;
+        font-size: 12px;
     }
     .date{
       display: none;
@@ -271,19 +321,23 @@
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      font-size: 8px;
     }
     .subjek{
-      font-size: 10px;
+      font-size: 8px;
       margin-top: 10px;
+      font-weight: 600;
     }
     .deskripsi{
       max-width: 250px;
-      font-size: 10px;
+      font-size: 12px;
       margin-top: 5px;
       overflow: hidden;
       text-overflow: ellipsis;
       height: 45px;
-      
+    }
+    .status{
+      font-size: 8px;
     }
     .img-cover{
       display: none;
@@ -312,6 +366,67 @@
     .logo p{
       font-size: 15px;
     }
+
+     /* image carousel */
+     .img-carousel-mid{
+      width: 267px;
+      height: 250px;
+    }
+    .img-carousel{
+      width: 267px;
+      height: 220px;
+    }
+
+    .text-pengaduan{
+      font-size: 14px;
+    }
+    .btn-pengaduan{
+      padding-left: 12px;
+      padding-right: 12px;
+      font-size: 12px;
+    }
+    .deskripsi-sitawa p{
+      font-size: 12px;
+    }
+    .deskripsi-sitawa p span{
+      font-size: 14px;
+    }
+
+/* pemgaduan */
+    .lottie{
+      width: 60px;
+    }
+    .img-upload img{
+      width: 34px;
+      height: 34px;
+    }
+
+    .deskripsi{
+      max-width: 250px;
+      font-size: 10px;
+      margin-top: 5px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      height: 45px;
+      
+    }
+  }
+  @media(max-width: 480px){
+     /* image carousel */
+     .img-carousel-mid{
+      width: 200px;
+      height: 170px;
+    }
+    .img-carousel{
+      width: 167px;
+      height: 140px;
+    }
+    .dot-carousels{
+      width: 5px;
+      height: 5px;
+    }
+    
+
   }
 
 
@@ -349,6 +464,7 @@
     .subjek{
       font-size: 10px;
       margin-top: 10px;
+      width: 100px;
     }
     .deskripsi{
       max-width: 250px;
@@ -372,7 +488,7 @@
       width: 270px;
     }
     .input-pengaduan textarea{
-      width: 17px;
+      width: 270px;
     }
     .btn-send{
       padding-left: 2rem /* 96px */;
@@ -399,6 +515,10 @@
       padding-right: 2rem /* 96px */;
     }
 
+  }
+  .custom-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
   
 

@@ -16,16 +16,16 @@ const home = () => {
       <div className=" w-full ">
         <div className="w-full flex justify-center">
           <div className="w-[98%] flex justify-center  mt-32">
-            <div className="carousel w-full">
+            <div className="carousel w-full  ">
               <Carousel images={images} />
             </div>
           </div>
         </div>
-        <div className="w-full flex justify-center">
-          <div className="w-[70%]  mt-10 mb-16  border border-[#F0F0F0] shadow-xl rounded-xl">
+        <div className=" w-full flex justify-center">
+          <div className="w-full  mb-16 rounded-xl">
             <div className="pt-12">
-              <div className="flex justify-center">
-                <div className="w-1/2 flex items-center justify-end ">
+              <div className="deskripsi-sitawa flex justify-center mx-10">
+                <div className=" flex items-center justify-end ">
                   <p className="max-w-[533px] text-[16px] text-center  ">
                     <span className="font-bold text-[32px]">Si Tawa </span>
                     adalah “Sistem Informasi Pertanian Sumbawa” yang dirancang
@@ -38,17 +38,17 @@ const home = () => {
                     lebih cepat dan efektif.
                   </p>
                 </div>
-                <div className="w-1/2 flex items-center ">
+                <div className="flex items-center ">
                   <img className=" " src={petani} alt="" />
                 </div>
               </div>
               <div className="mt-20 flex justify-center  items-center">
                 <div className="">
-                  <p className="pb-3 text-[30px]">
+                  <p className="text-pengaduan pb-3 text-[30px]">
                     Ayo coba menyampaikan pengaduan sekarang!!
                   </p>
                   <div className="flex justify-center pb-10">
-                    <button onClick={() => navigate("/pengaduan")} className="px-10 py-2 border border-[#06D001] rounded-xl text-[#06D001] ">
+                    <button onClick={() => navigate("/pengaduan")} className="btn-pengaduan px-10 py-2 border border-[#06D001] rounded-xl text-[#06D001] ">
                       Pengaduan
                     </button>
                   </div>

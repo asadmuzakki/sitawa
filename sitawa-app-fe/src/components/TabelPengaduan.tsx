@@ -7,6 +7,7 @@ import { format } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
 
 export type pengaduan = {
+  description: string;
   id: number;
   name: string;
   subject: string;
@@ -14,6 +15,7 @@ export type pengaduan = {
   address: string;
   phone: string;
   created_at: any;
+  image_name: string;
 };
 const TabelPengaduan = () => {
   const [clickedIndex, setClickedIndex] = useState<number | null>(null);
@@ -191,7 +193,7 @@ const TabelPengaduan = () => {
                                   Balas
                                 </button>
                                 <button
-                                  onClick={()=>deleteHandler(item.id,item.image)}
+                                  onClick={()=>deleteHandler(item.id,item.image_name)}
                                   className="block h-1/2 w-full"
                                 >
                                   Hapus

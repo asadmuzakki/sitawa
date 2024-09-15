@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo/sumbawa.jpeg";
-import photoProfile from "../../assets/photos/account-avatar-profile-user-svgrepo-com.png";
+
 const NavPengaduan = () => {
   const [color] = useState(0);
   const [showEdit, setShowEdit] = useState(false);

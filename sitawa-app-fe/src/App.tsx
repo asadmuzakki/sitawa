@@ -16,12 +16,13 @@ import FooterLogin from "./components/loginregistcomp/FooterLogin.tsx";
 
 import pengaduan from "./page/User/pengaduan.tsx";
 
-import detailpengaduan from "./components/UserComponents/detailpengaduan.tsx";
+
 import editprofile from "./page/User/editprofile.tsx";
 import balasPengaduan from "./page/superadmin/balasPengaduan.tsx";
 import hasilProduksi from "./page/superadmin/hasilProduksi.tsx";
 import statistikProduksi from "./page/superadmin/statistikProduksi.tsx";
 import perangkatKecamatan from "./page/perangkat-kecamatan/perangkatKecamatan.tsx";
+import detailPengaduan from "./page/User/detailPengaduan.tsx";
 
 
 
@@ -43,6 +44,7 @@ const App = () => {
         <Route path="/perangkat-desa" Component={perangkatdesa} />
         <Route path="/perangkat-desa/tambah-akun" Component={tambahakun} />
         <Route path="/register" Component={regist} />
+        <Route path="/hasil-pengaduan/detail-pengaduan/:id" Component={detailPengaduan} />
       </Routes>
     
     </div>

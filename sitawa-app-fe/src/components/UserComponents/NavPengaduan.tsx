@@ -66,7 +66,7 @@ const NavPengaduan = () => {
 
             <span
               onClick={() => setShowToggle(!showToggle)}
-              className={`cursor-pointer ${showToggle ? "hidden" : ""}`}
+              className={`hamburger cursor-pointer ${showToggle ? "hidden" : ""}`}
             >
               <svg
                 width="22"

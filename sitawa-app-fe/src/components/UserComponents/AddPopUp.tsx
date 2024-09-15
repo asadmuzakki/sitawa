@@ -25,7 +25,7 @@ const AddPopUp = () => {
   return (
     <div className="">
       <div
-        className={`bg-white w-[363px] h-[312px] rounded-md border shadow-2xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 animate__animated animate__fadeIn  ${state.actionAddData ? "" : "hidden"}`}
+        className={`addPopup bg-white w-[363px] h-[312px] rounded-md border shadow-2xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 animate__animated animate__fadeIn  ${state.actionAddData ? "" : "hidden"}`}
       >
         <div className="flex justify-end p-2">
           
@@ -41,7 +41,7 @@ const AddPopUp = () => {
             Pengaduan Anda Berhasil !!!
           </p>
         </div>
-        <div className="w-full flex justify-center mt-[20px]">
+        <div className="p w-full flex justify-center mt-[20px]">
           <button onClick={exitHandler} className="py-2 px-7 rounded-full border-none bg-custom-gradient text-white">
             Oke
           </button>
