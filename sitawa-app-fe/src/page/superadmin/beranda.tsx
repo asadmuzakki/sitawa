@@ -22,7 +22,7 @@ const beranda = () => {
       ></div>
       <Navbar />
       <div className="relative">
-        <div>
+        <div className="">
           <ExitPopup />
         </div>
         <div className="flex overflow-y-hidden">
@@ -41,7 +41,7 @@ const beranda = () => {
                     Accounts
                   </p>
                   <p className="border-l-[1px] border-[#858585] pl-2">
-                    Muhammad Muayyadin
+                    Superadmin
                   </p>
                 </div>
               </div>

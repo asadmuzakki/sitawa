@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { GlobalContext } from "../../GlobalContext";
+import 'animate.css'
 
 const ExitPopup = () => {
     const context = useContext(GlobalContext)
@@ -20,7 +21,7 @@ const ExitPopup = () => {
   return (
     <div className="">
       <div
-        className={`bg-white w-[363px] h-[312px] rounded-md border shadow-2xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 ${state.actionLogOut?"":"hidden"}`}
+        className={`bg-white w-[363px] h-[312px] rounded-md border shadow-2xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 animate__animated animate__fadeIn ${state.actionLogOut?"":"hidden"} `}
       >
         <div className="flex justify-end p-2">
           <button onClick={exitHandler} type="button">
@@ -58,7 +59,7 @@ const ExitPopup = () => {
         </div>
         <div className=" flex justify-center  mt-7">
           <p className="max-w-[170px] text-center font-bold text-black">
-            Apakah anda yakin ingin menghapus pengaduan?
+            Apakah anda yakin ingin keluar ?
           </p>
         </div>
         <div className="w-full flex justify-center mt-[20px]">

@@ -1,82 +1,176 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\api;
 
 use App\Models\Complaint;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\ComplaintResource;
+use Illuminate\Support\Facades\Validator;
 
 class ComplaintController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * index
+     *
+     * @return void
      */
     public function index()
     {
-        return ComplaintResource::collection(Complaint::all());
+        //get all complaint
+        $complaint = Complaint::latest()->paginate(5);
+
+        //return collection of complaint as a resource
+        return new ComplaintResource(true, 'List Data Complaint', $complaint);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * store
+     *
+     * @param  mixed $request
+     * @return void
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'phone_number' => 'required|string|max:15',
-            'address' => 'required|string|max:255',
-            'subject' => 'required|string|max:255',
-            'description' => 'required|string',
-            'latitude' => 'nullable|numeric',
-            'longitude' => 'nullable|numeric',
-            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        //define validation rules
+        $validator = Validator::make($request->all(), [
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'name' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+            'subject' => 'required',
+            'description' => 'required',
+            'latitude' => 'nullable',
+            'longitude' => 'nullable',
         ]);
 
-        // Simpan foto jika ada
-        $photoPath = null;
-        if ($request->hasFile('photo')) {
-            $photoPath = $request->file('photo')->store('photos', 'public'); // Menyimpan di storage/public/photos
+        //check if validation fails
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
         }
 
+        //upload image
+        $image = $request->file('image');
+        $image->storeAs('public/image', $image->hashName());
+
+        //create post
         $complaint = Complaint::create([
+            'image' => $image->hashName(),
             'name' => $request->name,
-            'phone_number' => $request->phone_number,
             'address' => $request->address,
-            'photo' => $photoPath,
+            'phone' => $request->phone,
             'subject' => $request->subject,
             'description' => $request->description,
             'latitude' => $request->latitude,
             'longitude' => $request->longitude,
         ]);
 
-        return new ComplaintResource($complaint);
+        //return response
+        return new ComplaintResource(true, 'Data Complaint Berhasil Ditambahkan!', $complaint);
     }
 
     /**
-     * Display the specified resource.
+     * show
+     *
+     * @param  mixed $id
+     * @return void
      */
-    public function show(string $id)
+    public function show($id)
     {
-        return new ComplaintResource(Complaint::findOrFail($id));
+        //find post by ID
+        $complaint = Complaint::find($id);
+
+        //return single complaint as a resource
+        return new ComplaintResource(true, 'Detail Data complaint!', $complaint);
     }
 
     /**
-     * Update the specified resource in storage.
+     * update
+     *
+     * @param  mixed $request
+     * @param  mixed $id
+     * @return void
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-    
+        //define validation rules
+        $validator = Validator::make($request->all(), [
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'name' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+            'subject' => 'required',
+            'description' => 'required',
+            'latitude' => 'nullable',
+            'longitude' => 'nullable',
+        ]);
+
+        //check if validation fails
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        //find post by ID
+        $complaint = Complaint::find($id);
+
+        //check if image is not empty
+        if ($request->hasFile('image')) {
+
+            //upload image
+            $image = $request->file('image');
+            $image->storeAs('public/image', $image->hashName());
+
+            //delete old image
+            Storage::delete('public/image/' . basename($complaint->image));
+
+            //update complaint with new image
+            $complaint->update([
+                'image' => $image->hashName(),
+                'name' => $request->name,
+                'address' => $request->address,
+                'phone' => $request->phone,
+                'subject' => $request->subject,
+                'description' => $request->description,
+                'latitude' => $request->latitude,
+                'longitude' => $request->longitude,
+            ]);
+        } else {
+            //update complaint without image
+            $complaint->update([
+                'name' => $request->name,
+                'address' => $request->address,
+                'phone' => $request->phone,
+                'subject' => $request->subject,
+                'description' => $request->description,
+                'latitude' => $request->latitude,
+                'longitude' => $request->longitude,
+            ]);
+        }
+
+        //return response
+        return new PostResource(true, 'Data Complaint Berhasil Diubah!', $complaint);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * destroy
+     *
+     * @param  mixed $id
+     * @return void
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        $complaint = Complaint::findOrFail($id);
+
+        //find complaint by ID
+        $complaint = Complaint::find($id);
+
+        //delete image
+        Storage::delete('public/image/'.basename($complaint->image));
+
+        //delete complaint
         $complaint->delete();
 
-        return response()->noContent();
+        //return response
+        return new ComplaintResource(true, 'Data Post Berhasil Dihapus!', null);
     }
 }

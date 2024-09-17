@@ -1,12 +1,12 @@
 import logo from "../assets/logo/sumbawa.jpeg";
-import photoProfile from "../assets/photos/Screenshot 2024-08-06 033013.png";
+import photoProfile from "../assets/photos/account-avatar-profile-user-svgrepo-com.png";
 const Navbar = () => {
   return (
     <div className="bg-[#FFFFFF] flex items-center w-full h-[83px] border border-[#F7F7F7] fixed  z-10">
       <div className="flex justify-between w-full items-center">
         <div className="logo flex gap-2 items-center ml-[41px]">
           <img className="w-[39px] h-[57px]" src={logo} alt="" />
-          <p className="text-[20px] text-[#9BEC00] text-bo">si TAWA</p>
+          <p className="text-[20px] text-[#9BEC00] font-bold ">si TAWA</p>
         </div>
         <div className="search h-[40px] w-[442px] rounded-[50px] flex items-center justify-between border border-[#9BEC00]">
           <span className="flex items-center ml-7">
@@ -66,7 +66,7 @@ const Navbar = () => {
             />
           </div>
           <div className="name-profile flex items-center">
-            <p className="text-[#858585] text-[12px]">Amylya Nurul</p>
+            <p className="text-[#858585] text-[12px]">Anonymous</p>
           </div>
         </div>
       </div>

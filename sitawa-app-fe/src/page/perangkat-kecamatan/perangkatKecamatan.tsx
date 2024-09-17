@@ -1,43 +1,25 @@
 import { useContext, useEffect, useState } from "react";
-
-import PopUp from "../../components/PopUp";
-import { GlobalContext } from "../../GlobalContext";
-import PengaduanSidebar from "../../components/sidebarComponents/PengaduanSidebar";
 import Navbar from "../../components/Navbar";
-import TabelPengaduan from "../../components/TabelPengaduan";
+import NavKecamatanComp from "../../components/perangkatKecamatanComp/NavKecamatanComp";
+import FormHasilProduksi from "../../components/perangkatKecamatanComp/FormHasilProduksi";
+import { GlobalContext } from "../../GlobalContext";
 
-
-const pengaduanmasyarakat = () => {
-  
+const perangkatKecamatan = () => {
   const context = useContext(GlobalContext);
-  if (!context) {
-    console.error("Global context not found");
-    return; // or throw an error, depending on your use case
+  if(!context) {
+    throw new Error("Global context not found");
   }
   const {state} = context
-  useEffect(() => {
-    console.log(state.actionHapusPengaduan);
-    
-  })
-  
-  
-  
   return (
     <div className="relative">
-      <div
-        className={` w-full h-[100vh] absolute   ${
-          state.actionHapusPengaduan ? "bg-black opacity-50 z-20" : ""
-        }`}
-      ></div>
       <Navbar />
-
       <div className="relative ">
-        <div className={`${state.actionHapusPengaduan === true ? "" : "hidden"}`}>
-          <PopUp />
-        </div>
         <div className="flex overflow-y-hidden">
-          <PengaduanSidebar bg={"bg-custom-gradient"} />
-          <div className="h-[100vh] overflow-auto   w-full  pt-36 flex justify-center scrollbar-hide">
+          <NavKecamatanComp bg={"bg-custom-gradient"} />
+          <div className="h-[100vh] overflow-auto relative w-full  pt-36 flex justify-center scrollbar-hide ">
+            <div className={`w-full h-full absolute flex justify-center items-center ${state.loadingProduksi ? "block" : "hidden"}`}>
+              <div className="loader-produksi"></div>
+            </div>
             <div className=" w-[85%]">
               <div className="flex justify-between text-[12px] font-bold text-[#858585]">
                 <div className="flex ">
@@ -47,7 +29,7 @@ const pengaduanmasyarakat = () => {
                   </p>
                 </div>
                 <div className="flex">
-                  <p  className="border-r-[1px] border-[#858585] pr-2">
+                  <p className="border-r-[1px] border-[#858585] pr-2">
                     Accounts
                   </p>
                   <p className="border-l-[1px] border-[#858585] pl-2">
@@ -91,7 +73,7 @@ const pengaduanmasyarakat = () => {
                     </div>
                   </div>
                 </div>
-                <TabelPengaduan />
+                <FormHasilProduksi />
               </div>
               <div className="pb-10"></div>
             </div>
@@ -103,4 +85,4 @@ const pengaduanmasyarakat = () => {
   );
 };
 
-export default pengaduanmasyarakat;
+export default perangkatKecamatan;

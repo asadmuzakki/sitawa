@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import users from "../assets/photos/ansel.png";
+import users from "../assets/photos/account-avatar-profile-user-svgrepo-com.png";
 import { profileBeranda } from "../data/data";
 
 const PengaduanDashboard = () => {
@@ -50,7 +50,7 @@ const PengaduanDashboard = () => {
                         src={users}
                         alt=""
                       />
-                      <p>{data.nama}</p>
+                      <p>Anonymous</p>
                     </div>
                     <button
                       className="detail-btn"
