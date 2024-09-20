@@ -56,6 +56,23 @@ class AuthController extends Controller
         ]);
     }
 
+    // Assign role to user
+    public function assignRole(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'role' => 'required|string',
+        ]);
+
+        $user = User::where('email', $request->email)->firstOrFail();
+        $role = $request->role;
+
+        // Assign the role
+        $user->assignRole($role);
+
+        return response()->json(['message' => 'Role assigned successfully']);
+    }
+
     // Logout
     public function logout(Request $request)
     {

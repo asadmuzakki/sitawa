@@ -19,7 +19,7 @@ class ComplaintController extends Controller
     public function index()
     {
         //get all complaint
-        $complaint = Complaint::latest()->paginate(5);
+        $complaint = Complaint::all();
 
         //return collection of complaint as a resource
         return new ComplaintResource(true, 'List Data Complaint', $complaint);

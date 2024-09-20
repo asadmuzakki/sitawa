@@ -18,7 +18,7 @@ class ReplyController extends Controller
     public function index()
     {
         //get all reply
-        $reply = Reply::latest()->paginate(5);
+        $reply = Reply::all();
 
         //return collection of reply as a resource
         return new ReplyResource(true, 'List Data Reply', $reply);
